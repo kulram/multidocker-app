@@ -1,0 +1,36 @@
+language: generic 
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t kulram/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true kulram/react-test npm run test -- --coverage
+
+after_success:
+    - docker build -t kulram/multidocker-app-client ./client
+    - docker build -t kulram/multidocker-app-nginx ./nginx
+    - docker build -t kulram/multidocker-app-server ./server
+    - docker build -t kulram/multidocker-app-worker ./worker
+    # Subimos las imágenes a Docker Hub
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push kulram/multidocker-app-client
+    - docker push kulram/multidocker-app-nginx
+    - docker push kulram/multidocker-app-server
+    - docker push kulram/multidocker-app-worker
+
+
+
+deploy:
+    provider: elasticbeanstalk
+    region: "eu-west-1"
+    app: "docker-react"
+    env: "DockerReact-env"
+    bucket_name: "elasticbeanstalk-eu-west-1-958143693995"
+    bucket_path: "docker-react"
+    on: 
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRECT_KEY
