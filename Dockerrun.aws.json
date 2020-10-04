@@ -1,0 +1,31 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [{
+            "name": "client",
+            "image": "kulram/multidocker-app-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "kuram/multidocker-app-nginx",
+            "hostname": "nginx",
+            "essential": true
+        },
+        {
+            "name": "server",
+            "image": "kulram/multidocker-app-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "kulram/multidocker-app-worker",
+            "hostname": "worker",
+            "essential": false
+        }
+    ]
+
+
+
+}

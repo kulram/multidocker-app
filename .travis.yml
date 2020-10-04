@@ -20,3 +20,15 @@ after_success:
     - docker push kulram/multidocker-app-nginx
     - docker push kulram/multidocker-app-server
     - docker push kulram/multidocker-app-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: "eu-west-1"
+    app: "multidocker"
+    env: "Multidocker-env"
+    bucket_name: "elasticbeanstalk-eu-west-1-958143693995"
+    bucket_path: "multidocker"
+    on: 
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_PASSWORD
