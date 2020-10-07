@@ -4,25 +4,34 @@
             "name": "client",
             "image": "kulram/multidocker-app-client",
             "hostname": "client",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "nginx",
             "image": "kuram/multidocker-app-nginx",
             "hostname": "nginx",
-            "essential": true
+            "essential": true,
+            "memory": 128,
+            "portMappings": [{
+                "hostPort": 80,
+                "containerPort": 80
+            }],
+            "links": ["client", "server"]
         },
         {
             "name": "server",
             "image": "kulram/multidocker-app-server",
             "hostname": "api",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "worker",
             "image": "kulram/multidocker-app-worker",
             "hostname": "worker",
-            "essential": false
+            "essential": false,
+            "memory": 128
         }
     ]
 
