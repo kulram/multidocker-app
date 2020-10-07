@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import OtherPage from './OtherPage';
 import Fib from './Fib';
 
 class App extends Component {
     render() {
-        return ( <
-            Router >
+        return ( < Router >
             <
             div className = "App" >
             <
@@ -18,21 +16,17 @@ class App extends Component {
             className = "App-logo"
             alt = "logo" / >
             <
-            h1 className = "App-title" > Welcome to React in aws < /h1> <
-            Link to = "/" > Home < /Link> <
-            Link to = "/otherpage" > Other Page < /Link> <
-            /header> <
+            h1 className = "App-title" > Welcome to React in aws < /h1>  <
+            Link to = "/" > Home < /Link>  <
+            /header >  <
             div >
             <
             Route exact path = "/"
             component = { Fib }
             /> <
-            Route path = "/otherpage"
-            component = { OtherPage }
-            /> <
-            /div> <
-            /div> <
-            /Router>
+            /div > </div >
+            <
+            /Router >
         );
     }
 }
