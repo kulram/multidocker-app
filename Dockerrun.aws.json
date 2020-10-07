@@ -9,7 +9,7 @@
         },
         {
             "name": "nginx",
-            "image": "kuram/multidocker-app-nginx",
+            "image": "kulram/multidocker-app-nginx",
             "hostname": "nginx",
             "essential": true,
             "memory": 128,
